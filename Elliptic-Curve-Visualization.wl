@@ -57,10 +57,11 @@ Show[
   ParametricPlot3D[{xTorus[u, v], yTorus[u, v], zTorus[u, v]}, {u, 0, 2 Pi}, {v, -Pi, Pi}, PlotStyle -> Directive[LightBlue, Opacity[0.2]], Mesh -> None], 
   Graphics3D[
     {
-      Directive[Black, Opacity[0.3]], PointSize[Small], Point[meshPoints], lines, Text["(0,0)", labelPos, {-1, -1}],(*existing graphics elements*)
-      Red, PointSize[Large], Point[mappedCurvePoints] (*newly added points in red color*)
+      Directive[Black], PointSize[Small], lines, Text["(0,0)", labelPos, {-1, -1}],(*existing graphics elements*)
+      Blue, PointSize[Large], Point[mappedCurvePoints] (*newly changed points color to blue*)
     }, 
-    Boxed -> False, Axes -> True, ImageSize -> Large
+    ImageSize -> Large
   ], 
-  ParametricPlot3D[{xMapped[{u, yElliptic[u]}], yMapped[{u, yElliptic[u]}], zMapped[{u, yElliptic[u]}]}, {u, 0, p - 1}, PlotStyle -> Directive[Blue, Thickness[0.005]]]
+  ParametricPlot3D[{xMapped[{u, yElliptic[u]}], yMapped[{u, yElliptic[u]}], zMapped[{u, yElliptic[u]}]}, {u, 0, p - 1}, PlotStyle -> Directive[Blue, Thickness[0.003]]],
+  Boxed -> False, Axes -> False
 ]
