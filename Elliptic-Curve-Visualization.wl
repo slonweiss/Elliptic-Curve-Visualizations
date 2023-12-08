@@ -63,5 +63,6 @@ Show[
     ImageSize -> Large
   ], 
   ParametricPlot3D[{xMapped[{u, yElliptic[u]}], yMapped[{u, yElliptic[u]}], zMapped[{u, yElliptic[u]}]}, {u, 0, p - 1}, PlotStyle -> Directive[Blue, Thickness[0.003]]],
+  ParametricPlot3D[{xMapped[{u, yElliptic[u]}], yMapped[{u, yElliptic[u]}], zMapped[{u, yElliptic[u]}]}, {u, 0, p - 1}, PlotStyle -> Directive[Blue, Opacity[0.5], Thickness[0.003]]], (*second elliptic curve with same parameters but different color and opacity*)
   Boxed -> False, Axes -> False
 ]
