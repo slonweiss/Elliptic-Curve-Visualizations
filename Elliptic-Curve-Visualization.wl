@@ -58,11 +58,17 @@ Show[
   Graphics3D[
     {
       Directive[Black], PointSize[Small], lines, Text["(0,0)", labelPos, {-1, -1}],(*existing graphics elements*)
-      Blue, PointSize[Large], Point[mappedCurvePoints] (*newly changed points color to blue*)
+      Blue, PointSize[Large], Point[mappedCurvePoints] 
+      
     }, 
     ImageSize -> Large
   ], 
   ParametricPlot3D[{xMapped[{u, yElliptic[u]}], yMapped[{u, yElliptic[u]}], zMapped[{u, yElliptic[u]}]}, {u, 0, p - 1}, PlotStyle -> Directive[Blue, Thickness[0.003]]],
   ParametricPlot3D[{xMapped[{u, yElliptic[u]}], yMapped[{u, yElliptic[u]}], zMapped[{u, yElliptic[u]}]}, {u, 0, p - 1}, PlotStyle -> Directive[Blue, Opacity[0.5], Thickness[0.003]]], (*second elliptic curve with same parameters but different color and opacity*)
+  (*Line at x = 0*)
+ParametricPlot3D[{xTorus[Pi, v], yTorus[Pi, v], zTorus[Pi, v]}, {v, -Pi, Pi}, PlotStyle -> Directive[Red, Thickness[0.003]]],
+
+(*Line at y = 0*)
+ParametricPlot3D[{xTorus[u, 0], yTorus[u, 0], zTorus[u, 0]}, {u, 0, 2 Pi}, PlotStyle -> Directive[Red, Thickness[0.003]]],
   Boxed -> False, Axes -> False
 ]
