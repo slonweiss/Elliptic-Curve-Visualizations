@@ -1,3 +1,12 @@
+(*Define radii of torus*)
+c = 4;
+a = 2;
+
+(*Torus parametric functions*)
+xTorus[u_, v_] = (c + a Cos[v]) Cos[u];
+yTorus[u_, v_] = (c + a Cos[v]) Sin[u];
+zTorus[u_, v_] = a Sin[v];
+
 (*Hessian curve parameters*)
 dCoeff = 1;
 
@@ -10,6 +19,21 @@ xMapped[pt_] := xTorus[uMap[pt[[1]]], vMap[pt[[2]]]];
 yMapped[pt_] := yTorus[uMap[pt[[1]]], vMap[pt[[2]]]];
 zMapped[pt_] := zTorus[uMap[pt[[1]]], vMap[pt[[2]]]];
 
+(*Finite Field and Mesh Points*)
+p = 17; (*Modulus*)
+fieldPoints = Tuples[Range[0, p - 1], 2];
+uMap[x_] := 2 Pi x/(p - 1) + Pi;
+vMap[y_] := Pi (2 y/(p - 1) - 1) + Pi;
+meshPoints = Map[Function[pt, {xTorus[uMap[pt[[1]]], vMap[pt[[2]]]], yTorus[uMap[pt[[1]]], vMap[pt[[2]]]], zTorus[uMap[pt[[1]]], vMap[pt[[2]]]]}], fieldPoints];
+
+(*Generate lines for the mesh grid with translucent lines*)
+lines = {};
+For[i = 1, i <= p, i++, 
+  For[j = 1, j < p, j++, 
+    AppendTo[lines, {Directive[Black, Opacity[0.3]], Line[{meshPoints[[p (i - 1) + j]], meshPoints[[p (i - 1) + j + 1]]}]}];
+    AppendTo[lines, {Directive[Black, Opacity[0.3]], Line[{meshPoints[[p (j - 1) + i]], meshPoints[[p (j) + i]]}]}];
+  ];
+];
 (*Calculate Hessian curve points mod p*)
 hessianCurvePointsModP = {};
 For[x = 0, x < p, x++,
